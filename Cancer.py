@@ -6,7 +6,8 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
 
 #Setting dahsboard title tool
-st.set_page_config(layout='wide')
+st.set_page_config(layout='wide', page_title='Liver Cancer', page_icon = 'app_icon.png')
+st.beta_set_page_config(page_title='your_title', page_icon = favicon, layout = 'wide', initial_sidebar_state = 'auto')
 
 #Loading data and adding new columns
 df = pd.read_csv('Liver Cancer Dataset.csv')
