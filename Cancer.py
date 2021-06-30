@@ -6,7 +6,8 @@ import plotly.graph_objects as go
 from sklearn.linear_model import LinearRegression
 
 #Setting dahsboard title tool
-st.set_page_config(layout='wide', page_title='Liver Cancer', page_icon = 'app_icon.png')
+st.set_page_config(layout='wide', page_title='Liver Cancer',
+ page_icon = 'app_icon.png', initial_sidebar_state='collapsed')
 
 #Loading data and adding new columns
 df = pd.read_csv('Liver Cancer Dataset.csv')
@@ -407,12 +408,13 @@ def descriptive(dataframe):
 
     col3.plotly_chart(fig)
 
-
+    #years of life lost histogram
     fig = px.histogram(data, x='YLL', nbins=50,
         labels={'YLL':'Years of Life Lost'},
         title = 'Years of Life Lost Distribution' + cont_title, 
         color_discrete_sequence =['#4a7d66']*len(data), histnorm=per_option)
 
+    #histogram layout
     fig.update_layout(
         bargap = 0.14,
         title_font_size = 14,
@@ -427,92 +429,92 @@ def descriptive(dataframe):
 
     col4.plotly_chart(fig)
 
-
+    #Diabetes pie chart
     fig1 = px.pie(data, names='Diabetes', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants with/without Diabetes',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
-
+    #fixing text position
     fig1.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout plot color, and size
     fig1.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
     col5.plotly_chart(fig1)
 
-
+    #Smokers pie chart
     fig2 = px.pie(data, names='Smokers', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants who are/not Smokers',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
 
     fig2.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout of plot color and size and margin
     fig2.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
     col3.plotly_chart(fig2)
 
-
+    #thrombose pie chart
     fig3 = px.pie(data, names='Thrombose', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants with/without Thrombose',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
 
     fig3.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout of color, size, and margin
     fig3.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
     col4.plotly_chart(fig3)
 
-
+    #cirrhosis pie chart
     fig4 = px.pie(data, names='Cirrhosis', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants with/without Cirrhosis',
                      color_discrete_sequence =['#fcd2ca','#4a7d66'])
 
     fig4.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout of color, size, and margin
     fig4.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
     col5.plotly_chart(fig4)
 
-
+    #MilanCriteria pie chart
     fig5 = px.pie(data, names='MilanCriteria', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants who met/not Milan Criteria',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
 
     fig5.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout of color, size, and margin
     fig5.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
     col3.plotly_chart(fig5)
 
-
-    fig6 = px.pie(data, names='DifuseCancer', values='ID',
+    #Diffuse cancer pie chart
+    fig6 = px.pie(data, names='DiffuseCancer', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants with/without Diffuse Cancer',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
 
     fig6.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout of color, size, and margin
     fig6.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
     col4.plotly_chart(fig6)
 
-
+    #metastatic cancer pie chart
     fig7 = px.pie(data, names='MetastaticCancer', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants with/without Metastatic Cancer',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
 
     fig7.update_traces(textposition='inside', textinfo='percent+label')
-
+    #updating layout of color, size, and margin
     fig7.update_layout(plot_bgcolor='white', height = 230, width=350, 
         title_font_size = 13, showlegend=False, margin=dict(t=50,l=10,b=1,r=50))
 
@@ -575,6 +577,7 @@ def predictive(dataframe):
 
     #user must select diabetes option
     patient_diabetes = col4.selectbox('Diabetes:', ['Yes', 'No'])
+    #encoding the variable
     if patient_diabetes == 'No':
         patient_diabetes = 0
     elif patient_diabetes == 'Yes':
@@ -582,6 +585,7 @@ def predictive(dataframe):
 
     #user must select smokers option
     patient_smokers = col1.selectbox('Smokers:', ['Yes', 'No'])
+    #encoding the variable
     if patient_smokers == 'No':
         patient_smokers = 0
     elif patient_smokers == 'Yes':
@@ -589,6 +593,7 @@ def predictive(dataframe):
 
     #user must select thrombose option
     patient_thrombose = col2.selectbox('Thrombose:', ['Yes', 'No'])
+    #encoding the variable
     if patient_thrombose == 'No':
         patient_thrombose = 0
     elif patient_thrombose == 'Yes':
@@ -596,6 +601,7 @@ def predictive(dataframe):
 
     #user must select cirrhosis option
     patient_cirrhosis = col3.selectbox('Cirrhosis:', ['Yes', 'No'])
+    #encoding the variable
     if patient_cirrhosis == 'No':
         patient_cirrhosis = 0
     elif patient_cirrhosis == 'Yes':
@@ -603,6 +609,7 @@ def predictive(dataframe):
 
     #user must select milan criteris option
     patient_milan = col4.selectbox('Milan Criteria:', ['In', 'Out'])
+    #encoding the variable
     if patient_milan == 'Out':
         patient_milan = 0
     elif patient_milan == 'In':
@@ -610,6 +617,7 @@ def predictive(dataframe):
     
     #user must select difuse cancer option
     patient_difuse = col1.selectbox('Difuse Cancer:', ['Yes', 'No'])
+    #encoding the variable
     if patient_difuse == 'No':
         patient_difuse = 0
     elif patient_difuse == 'Yes':
@@ -617,13 +625,15 @@ def predictive(dataframe):
 
     #user must select metastatic cancer option
     patient_metastatic = col2.selectbox('Metastatic Cancer:', ['Yes', 'No'])
+    #encoding the variable
     if patient_metastatic == 'No':
         patient_metastatic = 0
     elif patient_metastatic == 'Yes':
         patient_metastatic = 1  
 
-    #user must select cancer stage
+    #user must select cancer stage 
     patient_cancer_stage = col3.selectbox('Cancer Stage:', ['A', 'B', 'C', 'D'])
+    #encoding the variable
     if patient_cancer_stage == 'A':
         patient_cancer_stage = 1
     elif patient_cancer_stage == 'B':
@@ -645,6 +655,7 @@ def predictive(dataframe):
     #predicting the survival in days
     survivial_prediction = lr.predict(patient_input)
 
+    #writing the predicted answer
     if predicting:
         st.header('')
         col1, col2 = st.beta_columns((1,1))
@@ -653,8 +664,8 @@ def predictive(dataframe):
     st.sidebar.header('')
     with st.sidebar.beta_expander('Model Information'):
         coef = pd.DataFrame({'Feature name':features.columns, 'Effect in days': lr.coef_})
-        coef['Effect in days'] = [round(cf,2) for cf in coef['Effect in days']]
-
+        coef['Effect in days'] = ["{:.2f}".format(cf) for cf in coef['Effect in days']]
+        #a table coefficient for the logistic regression
         st.table(coef)
 
 #based on selection, the dashboard will be opened
