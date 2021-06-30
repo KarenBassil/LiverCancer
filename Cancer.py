@@ -653,7 +653,7 @@ def predictive(dataframe):
     st.sidebar.header('')
     with st.sidebar.beta_expander('Model Information'):
         coef = pd.DataFrame({'Feature name':features.columns, 'Effect in days': lr.coef_})
-        coef['Effect in days'] = [round(cf) for cf in coef['Effect in days']]
+        coef['Effect in days'] = [round(cf,2) for cf in coef['Effect in days']]
 
         st.table(coef)
 
