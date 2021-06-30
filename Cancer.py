@@ -104,11 +104,11 @@ def descriptive(dataframe):
         dataframe = dataframe[dataframe['Cirrhosis'] == 'No']
 
 
-    difuse_option = side1.radio('Diffuse Cancer:', ['Both', 'Yes', 'No'])
+    difuse_option = side1.radio('Diffuse Cancer:', ['Both', 'With', 'Without'])
 
-    if difuse_option == 'Yes':
+    if difuse_option == 'With':
         dataframe = dataframe[dataframe['DifuseCancer'] == 'Yes']
-    elif difuse_option == 'No':
+    elif difuse_option == 'Without':
         dataframe = dataframe[dataframe['DifuseCancer'] == 'No']
 
 
