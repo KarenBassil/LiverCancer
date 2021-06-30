@@ -385,8 +385,9 @@ def descriptive(dataframe):
 
     #Adding colors for the bar chart and assinging the highest bar count with a different color
     col = ['#4a7d66']*len(data_count)
-    indx = list(data_count['ID']).index(max(data_count['ID']))
-    col[indx] = '#fcd2ca'
+    if len(data_count['ID'])!=0:
+        indx = list(data_count['ID']).index(max(data_count['ID']))
+        col[indx] = '#fcd2ca'
 
     #Cancer stages bar chart
     fig = px.bar(data_count, x='CancerStages', y='ID',
