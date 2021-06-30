@@ -495,7 +495,7 @@ def descriptive(dataframe):
     col3.plotly_chart(fig5)
 
     #Diffuse cancer pie chart
-    fig6 = px.pie(data, names='DiffuseCancer', values='ID',
+    fig6 = px.pie(data, names='DifuseCancer', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
                      title = gender_title + 'Participants with/without Diffuse Cancer',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
