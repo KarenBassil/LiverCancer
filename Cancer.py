@@ -104,7 +104,7 @@ def descriptive(dataframe):
         dataframe = dataframe[dataframe['Cirrhosis'] == 'No']
 
 
-    difuse_option = side1.radio('Cancer Diffused:', ['Both', 'Yes', 'No'])
+    difuse_option = side1.radio('Diffuse Cancer:', ['Both', 'Yes', 'No'])
 
     if difuse_option == 'Yes':
         dataframe = dataframe[dataframe['DifuseCancer'] == 'Yes']
@@ -495,7 +495,7 @@ def descriptive(dataframe):
 
     fig6 = px.pie(data, names='DifuseCancer', values='ID',
                      labels={'ID':'Count of ' + gender_title + ' participants'},  
-                     title = gender_title + 'Participants with/without Difuse Cancer',
+                     title = gender_title + 'Participants with/without Diffuse Cancer',
                      color_discrete_sequence =['#4a7d66','#fcd2ca'])
 
     fig6.update_traces(textposition='inside', textinfo='percent+label')
