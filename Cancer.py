@@ -252,8 +252,22 @@ def descriptive(dataframe):
     col1, col2, col3, col4, col5 = st.beta_columns((1,0.001,3,3,3))
 
     #Adding a divider between the descrptive numbers and the figures
-    for i in range(0,28):
-        col2.write('|')
+#    for i in range(0,28):
+ #       col2.write('|')
+
+    html_line = """<html> <head> <title>
+            HTML border Property
+        </title>
+        <style>
+            .vertical {
+                border-left: 2px solid #e3c4bf;
+                height: 1115px;
+            }
+        </style> </head> <body>
+        <div class= "vertical"></div>
+    </body> </html> """
+
+    col2.markdown(html_line, unsafe_allow_html=True)
 
     #displaying an image for the participants
     col1.image('participants.png', use_column_width=True)
